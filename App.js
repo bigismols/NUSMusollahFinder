@@ -3,17 +3,27 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import MapScreen from './screens/MapScreen';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
-          <Stack.Screen name='Home' component={HomeScreen} />
-        </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <SafeAreaProvider>
+            <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
+              <Stack.Screen name='Home' component={HomeScreen} />
+              <Stack.Screen name='MapScreen' component={MapScreen} 
+              options={headerShown=false}/>
+            </Stack.Navigator>
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
