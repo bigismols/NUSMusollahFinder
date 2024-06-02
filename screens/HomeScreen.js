@@ -1,38 +1,37 @@
-import { View, Text , Image, TextInput} from 'react-native';
 import React from 'react';
+import { View, Text, Image, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ChevronDoubleDownIcon, SearchIcon } from "react-native-heroicons/outline";
+import { ChevronDoubleDownIcon } from 'react-native-heroicons/outline';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView className='p-5 bg-white '>
-      <Text>
-        {/* header */}
-        <View className='flex-row items-center pb-3 mt-8 mx-4 space-x-2 '>
-          <Image 
+    <SafeAreaView className='p-5 bg-white'>
+      {/* header */}
+      <View className='flex-row items-center pb-3 mt-8 mx-4 space-x-2'>
+        <Image 
           source={require("../assets/images/Masjid_icon.jpg")} 
           className='w-12 h-12 rounded-full'
-          />
-          <View className=''>
-            <Text className='font-bold text-gray-400 text-xs '>
-              Find your nearest Musollah Now! 
-            </Text>
-            <Text className='font-bold text-xl '>
-              Current Location
-              <ChevronDoubleDownIcon size={20} color='#000000' 
-              className='pt-3'/>
-            </Text>
-          </View>
-          {/* {searchbar} */}
-             <View>
-              <SearchIcon/>
-              <TextInput placeholder='Search location here'></TextInput>
-            </View>
-
+        />
+        <View>
+          <Text className='font-bold text-gray-400 text-xs'>
+            Find your nearest Musollah Now!
+          </Text>
+          <Text className='font-bold text-xl'>
+            Current Location
+            <ChevronDoubleDownIcon size={20} color='#000000' className='pt-3'/>
+          </Text>
         </View>
-      </Text>
+      </View>
+      {/* searchbar */}
+      <View className='flex-row items-center mt-4 mx-4 space-x-2'>
+        {/* <SearchIcon size={20} color='#000000'/> */}
+        <TextInput 
+          placeholder='Search location here' 
+          className='flex-1 border border-gray-300 rounded-md p-2'
+        />
+      </View>
     </SafeAreaView>
   )
 }
 
-export default HomeScreen
+export default HomeScreen;
