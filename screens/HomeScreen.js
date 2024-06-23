@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Touchable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ChevronDoubleDownIcon } from 'react-native-heroicons/outline';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { GOOGKE_MAPS_APIKEY } from '@env';
+import { useDispatch } from 'react-redux';
+import {setDestination, setOrigin} from '../slices/navSlice'
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView className='p-5 bg-white'>
       {/* header */}
@@ -17,8 +23,30 @@ const HomeScreen = () => {
             Find your nearest Musollah Now!
           </Text>
               <TouchableOpacity className='flex-row'>
-                <Text className='text-xl'>Current Location</Text>
-                <ChevronDoubleDownIcon size={20} color='#000000' className='pt-3'/>
+                <GooglePlacesAutocomplete
+                  placeholder='Current Location'
+                  nearbyPlacesAPI='GooglePlacesSearch'
+                  debounce={400}
+                  enablePoweredByContainer={false}
+                  onPress={(data, details = null) => {
+                    dispatch(
+                      setOrigin({
+                      location: details.geometry.location,
+                      description: data.description
+                    })
+                  );
+
+                    dispatch(setDestination(null));
+                  }}
+                  fetchDetails={true}
+                  returnKeyType='search'
+
+                  query={{
+                    key: GOOGKE_MAPS_APIKEY,
+                    language: 'en',
+                  }}
+                />
+                <ChevronDoubleDownIcon className='' size={20} color='#000000' />
               </TouchableOpacity>
         </View>
       </View>

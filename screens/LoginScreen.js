@@ -9,13 +9,13 @@ const LoginScreen = () => {
       <ImageBackground source={require('../assets/images/bg-green.jpg')} resizeMode='cover'
       className='w-full h-full absolute'/>
       <View className='flex space-y-4 mx-4 items-center'>
-        <View className='w-full mt-80 rounded-2xl items-center bg-gray-200'>
+        <View className='w-full mt-80 rounded-2xl items-center bg-gray-100'>
           <TextInput placeholder='Email' placeholderTextColor={'gray'} />
         </View>
-        <View className='w-full rounded-2xl items-center bg-gray-200'>
+        <View className='w-full rounded-2xl items-center bg-gray-100'>
           <TextInput placeholder='Password' placeholderTextColor={'gray'} secureTextEntry />
         </View>
-        <TouchableOpacity className='w-full rounded-2xl items-center bg-green-200 p-2'>
+        <TouchableOpacity onPress={() => navigation.push('HomeScreen')} className='w-full rounded-2xl items-center bg-green-200 p-2'>
             <Text>Login</Text>
         </TouchableOpacity>
         <View className='flex-row'>
