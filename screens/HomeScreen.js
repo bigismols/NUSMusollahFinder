@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Touchable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ChevronDoubleDownIcon } from 'react-native-heroicons/outline';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGKE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
 import {setDestination, setOrigin} from '../slices/navSlice'
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView className='p-5 bg-white'>
@@ -22,9 +23,8 @@ const HomeScreen = () => {
           <Text className='font-bold text-gray-400 text-xs'>
             Find your nearest Musollah Now!
           </Text>
-              <TouchableOpacity className='flex-row'>
-                <GooglePlacesAutocomplete
-                  placeholder='Current Location'
+          <GooglePlacesAutocomplete
+                  placeholder='Enter Location'
                   nearbyPlacesAPI='GooglePlacesSearch'
                   debounce={400}
                   enablePoweredByContainer={false}
@@ -46,18 +46,13 @@ const HomeScreen = () => {
                     language: 'en',
                   }}
                 />
-                <ChevronDoubleDownIcon className='' size={20} color='#000000' />
-              </TouchableOpacity>
         </View>
       </View>
       {/* searchbar */}
-      <View className='flex-row items-center mt-4 mx-4 space-x-2'>
+      <TouchableOpacity onPress={() => navigation.push('MapScreen')}>
         {/* <SearchIcon size={20} color='#000000'/> */}
-        <TextInput 
-          placeholder='Search Musollah location here' 
-          className='flex-1 border border-gray-300 rounded-md p-2'
-        />
-      </View>
+        <Text>Press here to go to map</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   )
 }
