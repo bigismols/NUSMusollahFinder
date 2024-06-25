@@ -33,4 +33,4 @@ const SignupScreen = () => {
   )
 }
 
-export default SignupScreen
+export default SignupScreen;
