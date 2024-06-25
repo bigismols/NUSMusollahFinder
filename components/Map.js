@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import MapView from 'react-native-maps'
-import { selectOrigin } from '../slices/navSlice'
 import { useSelector } from 'react-redux'
+import { selectOrigin } from '../slices/navSlice'
+import * as Location from 'expo-location'
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -10,8 +11,8 @@ const Map = () => {
   return (
     <MapView style={styles.map}
     initialRegion={{
-        latitude: origin.location.lat,
-        longitude: origin.location.lng,
+        latitude: 1.29687857263656,
+        longitude: 103.77639389634254,
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
     }}
@@ -25,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Map
+export default Map;
