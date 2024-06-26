@@ -21,16 +21,16 @@ const HomeScreen = () => {
           source={require("../assets/images/Masjid_icon.jpg")} 
           className='w-12 h-12 rounded-full'
         />
-        <View>
+        <View className='justify-around'>
           <Text className='font-bold text-black text-xl'>
-            N U S M U S O L L A H F I N D E R
+            N U S M U S O L L A H S
           </Text>         
         </View>
       </View>
       <SearchBar
           placeholder="Search here"
           onChangeText={(text) => console.log(text)}
-          className='pb-6'
+          className='mb-6'
         />
       {/* searchbar */}
       {/* <TouchableOpacity onPress={() => navigation.push('MapScreen')}>
