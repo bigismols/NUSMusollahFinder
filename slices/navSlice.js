@@ -7,7 +7,12 @@ const initialState = {
             longitude: 103.776533350757,
         }
     },
-    destination: null,
+    destination:{
+        location: {
+            latitude: 37.42020886613755,
+            longitude: -122.07657506959525,
+        }
+    },
     travelTimeInformation: null
 }
 

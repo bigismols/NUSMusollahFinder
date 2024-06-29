@@ -1,18 +1,21 @@
 import { StyleSheet } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import MapView, { Marker } from 'react-native-maps'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectOrigin, setOrigin } from '../slices/navSlice'
+import { selectDestination, selectOrigin, setOrigin } from '../slices/navSlice'
 import * as Location from 'expo-location'
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
+  const destination = useSelector(selectDestination);
   const dispatch = useDispatch();
+  const mapRef = useRef(null);
 
   useEffect(() => {
       const getPermissions = async () => {
         let {status} = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
+        let {backStatus} = await Location.requestBackgroundPermissionsAsync();
+        if (status !== 'granted' && backStatus !== 'granted') {
           console.log('Please grant location permissions!')
           return;
         } 
@@ -30,6 +33,17 @@ const Map = () => {
     }, [] 
   )
 
+  useEffect(() => {
+    if (mapRef.current && origin?.location) {
+      mapRef.current.animateToRegion({
+        latitude: origin.location.latitude,
+        longitude: origin.location.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
+    }
+  }, [origin]);
+
   return (
     <MapView style={styles.map}
     initialRegion={{
@@ -38,6 +52,11 @@ const Map = () => {
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
     }}
+    ref={mapRef}
+    showsMyLocationButton={true}
+    showsUserLocation={true}
+    followsUserLocation={true}
+    showsCompass={true}
     >
       {origin?.location && (
         <Marker
@@ -46,8 +65,20 @@ const Map = () => {
               longitude: origin.location.longitude,
             }
           }
-          title='Current Location'
-          identifier='Current Location'
+          title='Origin'
+          identifier='Origin'
+        />
+      )}
+
+      {destination?.location && (
+        <Marker
+          coordinate={{
+              latitude: destination.location.latitude,
+              longitude: destination.location.longitude,
+            }
+          }
+          title='Destination'
+          identifier='Destination'
         />
       )}
     </MapView>
