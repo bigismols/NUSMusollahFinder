@@ -2,6 +2,7 @@ import { Image, View, TextInput, TouchableOpacity, Text, ImageBackground } from 
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react';
+import { SelectList } from 'react-native-dropdown-select-list'
 
 const LoginScreen = () => {
   const navigation = useNavigation();
