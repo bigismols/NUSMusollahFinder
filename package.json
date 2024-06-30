@@ -19,6 +19,7 @@
     "expo": "^51.0.14",
     "expo-location": "~17.0.1",
     "expo-status-bar": "~1.12.1",
+    "firebase": "^10.12.2",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
