@@ -6,7 +6,7 @@ import { selectDestination, selectOrigin, setOrigin } from '../slices/navSlice'
 import * as Location from 'expo-location'
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"; 
 import { db } from '../firebase'
-
+// hello
 const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
@@ -48,6 +48,19 @@ const Map = () => {
       });
     }
   }, [origin]);
+
+  useEffect(() => {
+    if (mapRef.current && destination?.location) {
+      mapRef.current.animateToRegion({
+        // latitude: origin.location.latitude,
+        // longitude: origin.location.longitude,
+        latitude: destination.location.latitude, 
+        longitude: destination.location.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
+    }
+  }, [destination]);
 
   useEffect(() => {
     const fetchMusollahs = async () => {
