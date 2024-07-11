@@ -50,6 +50,19 @@ const Map = () => {
   }, [origin]);
 
   useEffect(() => {
+    if (mapRef.current && destination?.location) {
+      mapRef.current.animateToRegion({
+        // latitude: origin.location.latitude,
+        // longitude: origin.location.longitude,
+        latitude: destination.location.latitude, 
+        longitude: destination.location.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
+    }
+  }, [destination]);
+
+  useEffect(() => {
     const fetchMusollahs = async () => {
       try {
         const colRef = collection(db, 'musollahs');
