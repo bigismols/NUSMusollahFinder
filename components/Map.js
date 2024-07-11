@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import MapView, { Marker } from 'react-native-maps'
+import MapView, { Callout, Marker } from 'react-native-maps'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectDestination, selectOrigin, setOrigin } from '../slices/navSlice'
 import * as Location from 'expo-location'
@@ -127,7 +127,13 @@ const Map = () => {
             }
           }
           title={musollah.name}
-        />
+        >
+          {/* <Callout>
+            <View>
+              <Image source={{uri: }}/>
+            </View>
+          </Callout> */}
+        </Marker>
       ))}
     </MapView>
   )

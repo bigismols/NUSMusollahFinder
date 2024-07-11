@@ -11,7 +11,10 @@ const LoginScreen = () => {
 
   return (
     <View className='flex-1'> 
-      <ImageBackground source={require('../assets/images/bg-green.jpg')} resizeMode='cover'
+      <ImageBackground 
+      source={require('../assets/images/bg-green.jpg')} 
+      // source={{uri: 'https://cde.nus.edu.sg/wp-content/uploads/2023/08/NUS_SDE1_Finbarr_Fallon_198.png'}}
+      resizeMode='cover'
       className='w-full h-full absolute'/>
       <View className='flex space-y-4 mx-4 items-center'>
         <View className='w-full mt-80 rounded-2xl items-center bg-gray-100'>
