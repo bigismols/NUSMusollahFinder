@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import MapView, { Callout, Marker } from 'react-native-maps'
 import { useSelector, useDispatch } from 'react-redux'
@@ -68,7 +68,7 @@ const Map = () => {
         const colRef = collection(db, 'musollahs');
         const snapshot = await getDocs(colRef);
         const data = snapshot.docs.map(doc => doc.data());
-        console.log(data);
+        // console.log(data);
         setMusollahs(data);
       } catch (error) {
         console.error('Error fetching musollahs:', error);
@@ -128,11 +128,16 @@ const Map = () => {
           }
           title={musollah.name}
         >
-          {/* <Callout>
-            <View>
-              <Image source={{uri: }}/>
+          <Callout style={{height: 200, width: 200}}>
+            <View className='flex-1 align-middle'>
+              <Text>{musollah.name}</Text>
+              <Image 
+              // source={{uri: musollah.image}} 
+              source={require("../assets/images/Masjid_icon.jpg")}
+              onError={(e) => console.log(`Image load error: ${e.nativeEvent.error}`)}
+              style={{height: 100, width:150}}/>
             </View>
-          </Callout> */}
+          </Callout>
         </Marker>
       ))}
     </MapView>

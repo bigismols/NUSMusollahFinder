@@ -62,8 +62,8 @@ const HomeScreen = () => {
       {/* header */}
       <View className='flex-row items-center pb-3 mt-8 mx-4 space-x-2'>
         <Image 
-          // source={require("../assets/images/Masjid_icon.jpg")} 
-          source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/NUS%2C_Science%2C_Nov_06.JPG'}}
+          source={require("../assets/images/Masjid_icon.jpg")} 
+          // source={{uri: 'https://i0.wp.com/theoctant.org/wp-content/uploads/2021/09/Joshua-Vargas-SDE_2-min-scaled.jpg?fit=2560%2C1707&ssl=1'}}
           className='w-12 h-12 rounded-full'
         />
         <View className='justify-around'>
