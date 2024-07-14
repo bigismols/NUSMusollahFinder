@@ -3,11 +3,29 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list'
+import { FIREBASE_AUTH } from '../FirebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { ActivityIndicator } from 'react-native-web';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState(''); 
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
+
+  const Login = async () => {
+    setLoading(true);
+    try {
+      const response = await signInWithEmailAndPassword(auth, Email, Password);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      alert("Login failed: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View className='flex-1'> 
@@ -21,6 +39,7 @@ const LoginScreen = () => {
           <TextInput 
             placeholder='Email' 
             placeholderTextColor={'gray'} 
+            autoCapitalize='none'
             value={Email}
             onChangeText={text => setEmail(text)}
           />
@@ -29,18 +48,28 @@ const LoginScreen = () => {
           <TextInput 
             placeholder='Password' 
             placeholderTextColor={'gray'} 
+            autoCapitalize='none'
             value={Password}
             onChangeText={text => setPassword(text)}
-            secureTextEntry 
+            secureTextEntry={true}
           />
         </View>
-        <TouchableOpacity onPress={() => navigation.push('HomeScreen')} className='w-full rounded-2xl items-center bg-green-200 p-2'>
-            <Text>Login</Text>
-        </TouchableOpacity>
+        <View className='flex-row'></View>
+        {loading ? (
+          <ActivityIndicator size="Large" color="#000ff" />
+        ) : (
+          <> 
+            <TouchableOpacity 
+              className='w-full rounded-2xl items-center bg-green-200 p-2'
+              onPress={() => { Login; navigation.push('HomeScreen'); }}>
+                <Text>Login</Text>
+            </TouchableOpacity>
+          </>
+        )}
         <View className='flex-row'>
           <Text>Don't have an account?</Text>
           <TouchableOpacity onPress={() => navigation.push('SignupScreen')}>
-            <Text className='text-blue-500 underline'> Sign up</Text>
+            <Text className='text-blue-500 underline'> Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>

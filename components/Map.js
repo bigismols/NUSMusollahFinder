@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectDestination, selectOrigin, setOrigin } from '../slices/navSlice'
 import * as Location from 'expo-location'
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"; 
-import { db } from '../firebase'
+import { db } from '../FirebaseConfig'
 // hello
 const Map = () => {
   const origin = useSelector(selectOrigin);
