@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Touchable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch, useSelector } from 'react-redux';
 import {selectDestination, setDestination, setOrigin} from '../slices/navSlice'
 import { useNavigation} from '@react-navigation/native';
@@ -13,6 +12,7 @@ import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { db } from '../firebase'
 import { SelectList } from 'react-native-dropdown-select-list';
 import { hasStartedGeofencingAsync } from 'expo-location';
+import { GOOGLE_MAPS_APIKEY } from '@env';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
