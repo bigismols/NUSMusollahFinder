@@ -7,7 +7,9 @@ import * as Location from 'expo-location'
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"; 
 import { db } from '../firebase'
 import { Linking } from 'react-native'
-import {Svg, Image as ImageSvg} from 'react-native-svg'
+// import {Svg, Image as ImageSvg} from 'react-native-svg'
+import { GOOGLE_MAPS_APIKEY } from '@env';
+import MapViewDirections from 'react-native-maps-directions'
 
 // hello
 const Map = () => {
@@ -95,6 +97,14 @@ const Map = () => {
     followsUserLocation={true}
     showsCompass={true}
     >
+    {origin && destination && (
+      <MapViewDirections
+      apikey={GOOGLE_MAPS_APIKEY}
+      strokeWidth={3}
+      origin={origin}
+      destination={destination}
+      />
+    )}
       {origin?.location && (
         <Marker
           coordinate={{
