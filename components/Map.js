@@ -29,11 +29,13 @@ const Map = () => {
         } 
 
         let currentLocation = await Location.getCurrentPositionAsync();
-        console.log(currentLocation);
+        // console.log(currentLocation);
         dispatch(setOrigin({
           location: {
-            latitude: currentLocation.coords.latitude,
-            longitude: currentLocation.coords.longitude,
+            // latitude: currentLocation.coords.latitude,
+            // longitude: currentLocation.coords.longitude,
+            latitude: 1.2968749382461264,
+            longitude: 103.77642571509065,
           },
         }))
       }
@@ -101,8 +103,19 @@ const Map = () => {
       <MapViewDirections
       apikey={GOOGLE_MAPS_APIKEY}
       strokeWidth={3}
-      origin={origin}
-      destination={destination}
+      origin={{
+        latitude: origin.location.latitude,
+        longitude: origin.location.longitude,
+    }}
+      destination={{
+        latitude: destination.location.latitude,
+        longitude: destination.location.longitude,
+    }}
+      onError={(errorMessage) => {
+        console.log('MapViewDirections Error: ', errorMessage);
+        console.log('Origin: ', origin.location);
+        console.log('Destination: ', destination.location);
+      }}
       />
     )}
       {origin?.location && (
