@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import MapView, { Callout, Marker } from 'react-native-maps'
 import { useSelector, useDispatch } from 'react-redux'
@@ -6,6 +6,10 @@ import { selectDestination, selectOrigin, setOrigin } from '../slices/navSlice'
 import * as Location from 'expo-location'
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"; 
 import { db } from '../FirebaseConfig'
+import { Linking } from 'react-native'
+// import {Svg, Image as ImageSvg} from 'react-native-svg'
+import { GOOGLE_MAPS_APIKEY } from '@env';
+import MapViewDirections from 'react-native-maps-directions'
 // hello
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -92,6 +96,14 @@ const Map = () => {
     followsUserLocation={true}
     showsCompass={true}
     >
+    {origin && destination && (
+      <MapViewDirections
+      apikey={GOOGLE_MAPS_APIKEY}
+      strokeWidth={3}
+      origin={origin}
+      destination={destination}
+      />
+    )}
       {origin?.location && (
         <Marker
           coordinate={{
@@ -128,14 +140,26 @@ const Map = () => {
           }
           title={musollah.name}
         >
-          <Callout style={{height: 200, width: 200}}>
-            <View className='flex-1 align-middle'>
-              <Text>{musollah.name}</Text>
-              <Image 
-              // source={{uri: musollah.image}} 
-              source={require("../assets/images/Masjid_icon.jpg")}
-              onError={(e) => console.log(`Image load error: ${e.nativeEvent.error}`)}
-              style={{height: 100, width:150}}/>
+          <Callout style={{height: 200, width: 200, padding: 15, flex: 1}}>
+            <View className='items-center justify-between align-middle'>
+              <View>
+                <Text>{musollah.name}</Text>
+              </View>
+              <View>
+                <Text className='w-full h-full'>
+                  <Image 
+                  source={{uri: musollah.image}} 
+                  // source={require("../assets/images/Masjid_icon.jpg")}
+                  onError={(e) => console.log(`Image load error: ${e.nativeEvent.error}`)}
+                  style={{height: 150, width:150}}
+                  resizeMode='cover'
+                  />
+                </Text> 
+              </View>
+              {/* <TouchableOpacity style={{color: 'blue'}}
+                  onPress={() => Linking.openURL(musollah.link)}>
+                    <Text>More info here!</Text>
+            </TouchableOpacity> */}
             </View>
           </Callout>
         </Marker>
