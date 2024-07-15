@@ -8,7 +8,6 @@ import MapScreen from './screens/MapScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {

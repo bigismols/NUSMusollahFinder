@@ -9,7 +9,7 @@ import Map from '../components/Map';
 import SearchBar from "react-native-dynamic-search-bar";
 import { useState, useEffect } from 'react';
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { db } from '../firebase'
+import { db } from '../FirebaseConfig'
 import { SelectList } from 'react-native-dropdown-select-list';
 import { hasStartedGeofencingAsync } from 'expo-location';
 import { GOOGLE_MAPS_APIKEY } from '@env';
