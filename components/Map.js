@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectDestination, selectOrigin, setOrigin } from '../slices/navSlice'
 import * as Location from 'expo-location'
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"; 
-import { db } from '../FirebaseConfig'
-import { Linking } from 'react-native'
+import { FIRESTORE_DB } from '../FirebaseConfig'
 // import {Svg, Image as ImageSvg} from 'react-native-svg'
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import MapViewDirections from 'react-native-maps-directions'
+import { useNavigation } from '@react-navigation/native'
 // hello
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -17,6 +17,8 @@ const Map = () => {
   const dispatch = useDispatch();
   const mapRef = useRef(null);
   const [musollahs, setMusollahs] = useState([]);
+  const navigation = useNavigation();
+  
 
   useEffect(() => {
       const getPermissions = async () => {
@@ -71,7 +73,7 @@ const Map = () => {
   useEffect(() => {
     const fetchMusollahs = async () => {
       try {
-        const colRef = collection(db, 'musollahs');
+        const colRef = collection(FIRESTORE_DB, 'musollahs');
         const snapshot = await getDocs(colRef);
         const data = snapshot.docs.map(doc => doc.data());
         // console.log(data);
@@ -111,9 +113,9 @@ const Map = () => {
         longitude: destination.location.longitude,
     }}
       onError={(errorMessage) => {
-        console.log('MapViewDirections Error: ', errorMessage);
-        console.log('Origin: ', origin.location);
-        console.log('Destination: ', destination.location);
+        // console.log('MapViewDirections Error: ', errorMessage);
+        // console.log('Origin: ', origin.location);
+        // console.log('Destination: ', destination.location);
       }}
       />
     )}
@@ -153,7 +155,9 @@ const Map = () => {
           }
           title={musollah.name}
         >
-          <Callout style={{height: 200, width: 200, padding: 15, flex: 1}}>
+          <Callout style={{height: 200, width: 200, padding: 15, flex: 1}}
+          onPress={() => navigation.navigate('MapInfoScreen', musollah)}
+          >
             <View className='items-center justify-between align-middle'>
               <View>
                 <Text>{musollah.name}</Text>
