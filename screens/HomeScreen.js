@@ -11,8 +11,6 @@ import { useState, useEffect } from 'react';
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { db } from '../FirebaseConfig'
 import { SelectList } from 'react-native-dropdown-select-list';
-import { hasStartedGeofencingAsync } from 'expo-location';
-import { GOOGLE_MAPS_APIKEY } from '@env';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
