@@ -9,7 +9,7 @@ import Map from '../components/Map';
 import SearchBar from "react-native-dynamic-search-bar";
 import { useState, useEffect } from 'react';
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { db } from '../FirebaseConfig'
+import { FIRESTORE_DB } from '../FirebaseConfig'
 import { SelectList } from 'react-native-dropdown-select-list';
 
 const HomeScreen = () => {
@@ -22,7 +22,7 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchMusollahs = async () => {
       try {
-        const colRef = collection(db, 'musollahs');
+        const colRef = collection(FIRESTORE_DB, 'musollahs');
         const snapshot = await getDocs(colRef);
         const data = snapshot.docs.map(doc => doc.data());
         console.log(data);
@@ -60,8 +60,8 @@ const HomeScreen = () => {
       {/* header */}
       <View className='flex-row items-center pb-3 mt-8 mx-4 space-x-2'>
         <Image 
-          source={require("../assets/images/Masjid_icon.jpg")} 
-          // source={{uri: 'https://i0.wp.com/theoctant.org/wp-content/uploads/2021/09/Joshua-Vargas-SDE_2-min-scaled.jpg?fit=2560%2C1707&ssl=1'}}
+          // source={require("../assets/images/Masjid_icon.jpg")} 
+          source={{uri: 'https://i0.wp.com/theoctant.org/wp-content/uploads/2021/09/Joshua-Vargas-SDE_2-min-scaled.jpg?fit=2560%2C1707&ssl=1'}}
           className='w-12 h-12 rounded-full'
         />
         <View className='justify-around'>
