@@ -156,7 +156,10 @@ const Map = () => {
           title={musollah.name}
         >
           <Callout style={{height: 200, width: 200, padding: 15, flex: 1}}
-          onPress={() => navigation.navigate('MapInfoScreen', musollah)}
+          onPress={() => {
+            navigation.navigate('MapInfoScreen', {musollah});
+            console.log(musollah.image);
+          }}
           >
             <View className='items-center justify-between align-middle'>
               <View>
