@@ -2,10 +2,9 @@ import { Image, View, TextInput, TouchableOpacity, Text, ImageBackground } from 
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react';
-import { SelectList } from 'react-native-dropdown-select-list'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { ActivityIndicator } from 'react-native-web';
+import { ActivityIndicator } from 'react-native';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -61,7 +60,7 @@ const LoginScreen = () => {
           <> 
             <TouchableOpacity 
               className='w-full rounded-2xl items-center bg-green-200 p-2'
-              onPress={() => { Login; navigation.push('HomeScreen'); }}>
+              onPress={Login}>
                 <Text>Login</Text>
             </TouchableOpacity>
           </>

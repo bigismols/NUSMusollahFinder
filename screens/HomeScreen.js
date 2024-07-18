@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, Touchable, StyleSheet } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Touchable, StyleSheet, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,8 +9,9 @@ import Map from '../components/Map';
 import SearchBar from "react-native-dynamic-search-bar";
 import { useState, useEffect } from 'react';
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { FIRESTORE_DB } from '../FirebaseConfig'
+import { FIREBASE_AUTH, FIRESTORE_DB } from '../FirebaseConfig'
 import { SelectList } from 'react-native-dropdown-select-list';
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -57,17 +58,36 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView className=' bg-white'>
+      <TouchableOpacity onPress={() => FIREBASE_AUTH.signOut()}
+      className='flex-row items-center pl-3'  
+      >
+          <FontAwesome 
+          name='angle-double-left'
+          size={28}
+          color='green'
+          />
+          <Text className='text-base ml-1'>Sign out</Text>
+      </TouchableOpacity>
       {/* header */}
-      <View className='flex-row items-center pb-3 mt-8 mx-4 space-x-2'>
-        <Image 
-          // source={require("../assets/images/Masjid_icon.jpg")} 
-          source={{uri: 'https://i0.wp.com/theoctant.org/wp-content/uploads/2021/09/Joshua-Vargas-SDE_2-min-scaled.jpg?fit=2560%2C1707&ssl=1'}}
-          className='w-12 h-12 rounded-full'
-        />
-        <View className='justify-around'>
-          <Text className='font-bold text-black text-xl'>
-            N U S M U S O L L A H S
-          </Text>         
+      <View className='pb-3 mt-2 mx-4 space-x-2'>
+        <View className='flex-row items-center justify-between'>
+          <View className='flex-row'>
+            <Image 
+              source={require("../assets/images/Masjid_icon.jpg")} 
+              // source={{uri: 'https://i0.wp.com/theoctant.org/wp-content/uploads/2021/09/Joshua-Vargas-SDE_2-min-scaled.jpg?fit=2560%2C1707&ssl=1'}}
+              className='w-12 h-12 rounded-full'
+            />
+            <View className='justify-around'>
+              <Text className='font-bold text-black text-xl'>
+                N U S M U S O L L A H S
+              </Text>         
+            </View>
+          </View>
+          <FontAwesome 
+          name='user'
+          size={28}
+          onPress={()=>navigation.navigate('UserInfoTab')}
+          />
         </View>
       </View>
       {/* <SearchBar
