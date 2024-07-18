@@ -44,31 +44,44 @@ const Map = () => {
     }, [] 
   )
 
-  useEffect(() => {
-    if (mapRef.current && origin?.location) {
-      mapRef.current.animateToRegion({
-        // latitude: origin.location.latitude,
-        // longitude: origin.location.longitude,
-        latitude: 1.2968749382461264, 
-        longitude: 103.77642571509065,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-      });
-    }
-  }, [origin]);
+  // useEffect(() => {
+  //   if (mapRef.current && origin?.location) {
+  //     mapRef.current.animateToRegion({
+  //       // latitude: origin.location.latitude,
+  //       // longitude: origin.location.longitude,
+        // latitude: 1.2968749382461264, 
+        // longitude: 103.77642571509065,
+  //       latitudeDelta: 0.005,
+  //       longitudeDelta: 0.005,
+  //     });
+  //   }
+  // }, [origin]);
 
-  useEffect(() => {
-    if (mapRef.current && destination?.location) {
-      mapRef.current.animateToRegion({
-        // latitude: origin.location.latitude,
-        // longitude: origin.location.longitude,
-        latitude: destination.location.latitude, 
-        longitude: destination.location.longitude,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+  useEffect(
+    () => 
+  //     {
+  //   if (mapRef.current && destination?.location) {
+  //     mapRef.current.animateToRegion({
+  //       // latitude: origin.location.latitude,
+  //       // longitude: origin.location.longitude,
+  //       latitude: destination.location.latitude, 
+  //       longitude: destination.location.longitude,
+  //       latitudeDelta: 0.005,
+  //       longitudeDelta: 0.005,
+  //     });
+  //   }
+  // }, [destination]
+  {
+    if (!origin || !destination) return;
+
+    setTimeout(() => {
+      mapRef.current.fitToSuppliedMarkers(['Origin', 'Destination'], {
+        edgePadding: { top: 50, right: 50, left: 50, bottom: 50 },
+        animated: true,
       });
-    }
-  }, [destination]);
+    }, 500);
+  }, [destination]
+);
 
   useEffect(() => {
     const fetchMusollahs = async () => {
@@ -99,6 +112,13 @@ const Map = () => {
     showsUserLocation={true}
     followsUserLocation={true}
     showsCompass={true}
+    onMapReady={() => {
+      mapRef.current.animateToRegion([{
+        latitude: 1.2968749382461264, 
+        longitude: 103.77642571509065,
+        }]
+      )}
+    }
     >
     {origin && destination && (
       <MapViewDirections

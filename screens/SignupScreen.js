@@ -5,7 +5,7 @@ import { useState } from 'react';
 import LoginScreen from './LoginScreen';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { ActivityIndicator } from 'react-native-web';
+import { ActivityIndicator } from 'react-native';
 
 const SignupScreen = () => {
   const navigation = useNavigation();
@@ -59,7 +59,7 @@ const SignupScreen = () => {
           <> 
             <TouchableOpacity 
               className='w-full rounded-2xl items-center bg-green-200 p-2'
-              onPress={() => { SignUp; navigation.push('HomeScreen'); }}>
+              onPress={SignUp}>
                 <Text>Sign Up</Text>
             </TouchableOpacity>
           </>
