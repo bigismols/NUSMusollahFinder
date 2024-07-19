@@ -100,24 +100,26 @@ const Map = () => {
   }, []);
 
   return (
-    <MapView style={styles.map}
-    initialRegion={{
-        latitude: origin.location.latitude,
-        longitude: origin.location.longitude,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-    }}
-    ref={mapRef}
-    showsMyLocationButton={true}
-    showsUserLocation={true}
-    followsUserLocation={true}
-    showsCompass={true}
-    onMapReady={() => {
-      mapRef.current.animateToRegion([{
-        latitude: 1.2968749382461264, 
-        longitude: 103.77642571509065,
-        }]
-      )}
+    <MapView 
+      provider='google'
+      style={styles.map}
+      initialRegion={{
+          latitude: origin.location.latitude,
+          longitude: origin.location.longitude,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+      }}
+      ref={mapRef}
+      showsMyLocationButton={true}
+      showsUserLocation={true}
+      followsUserLocation={true}
+      showsCompass={true}
+      onMapReady={() => {
+        mapRef.current.animateToRegion([{
+          latitude: 1.2968749382461264, 
+          longitude: 103.77642571509065,
+          }]
+        )}
     }
     >
     {origin && destination && (

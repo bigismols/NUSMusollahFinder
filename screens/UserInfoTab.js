@@ -13,6 +13,7 @@ const UserInfoTab = () => {
     // const photoURL = user.photoURL;
     // const emailVerified = user.emailVerified;
     const uid = user.uid;
+    const userName = user.displayName;
 
   return (
     <SafeAreaView>
@@ -26,9 +27,17 @@ const UserInfoTab = () => {
       </View>
       { email ? (
         <>
-          <View className='mt-2 flex-row p-3 items-center border-t-2 border-b-2'>
+          <View className='mt-2 flex-row p-3 items-center border-t-2'>
             <Text className='text-gray-500  text-xl'>User Email: </Text>
             <Text className=' text-xl'>{email}</Text>
+          </View>
+          <View className='flex-row p-3 items-center border-t-2'>
+            <Text className='text-gray-500  text-xl'>Username: </Text>
+            <Text className=' text-xl'>{userName}</Text>
+          </View>
+          <View className='flex-row p-3 items-center border-t-2 border-b-2'>
+            <Text className='text-gray-500  text-xl'>User UID: </Text>
+            <Text className=' text-xl'>{uid}</Text>
           </View>
         </>
       ) :

@@ -9,6 +9,7 @@ import { ActivityIndicator } from 'react-native';
 
 const SignupScreen = () => {
   const navigation = useNavigation();
+  const [userName, setUsername] = useState('');
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState(''); 
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,15 @@ const SignupScreen = () => {
       className='w-full h-full absolute'/>
       <View className='flex space-y-4 mx-4 items-center'>
         <View className='w-full mt-80 rounded-2xl items-center bg-gray-200'></View>
+        <View className='w-full rounded-2xl items-center bg-gray-200'>
+          <TextInput 
+            placeholder='Username' 
+            placeholderTextColor={'gray'} 
+            autoCapitalize='none'
+            value={userName}
+            onChangeText={text => setUsername(text)} 
+          />
+        </View>
         <View className='w-full rounded-2xl items-center bg-gray-200'>
           <TextInput 
             placeholder='Email' 
