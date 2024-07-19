@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ActivityIndicator } from 'react-native';
 
 const LoginScreen = () => {
@@ -18,6 +18,7 @@ const LoginScreen = () => {
     try {
       const response = await signInWithEmailAndPassword(auth, Email, Password);
       console.log(response);
+      await updateProfile(response.user, {displayName: userName})
     } catch (error) {
       console.log(error);
       alert("Login failed: " + error.message);
