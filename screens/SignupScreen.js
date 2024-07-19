@@ -20,6 +20,7 @@ const SignupScreen = () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, Email, Password);
       console.log(response);
+      await updateProfile(response.user, {displayName: userName})
       alert("Check your Emails!");
     } catch (error) {
       console.log(error);
