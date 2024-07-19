@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react';
 import LoginScreen from './LoginScreen';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ActivityIndicator } from 'react-native';
 
 const SignupScreen = () => {
@@ -20,6 +20,7 @@ const SignupScreen = () => {
     try {
       const response = await createUserWithEmailAndPassword(auth, Email, Password);
       console.log(response);
+      await updateProfile(response.user, {displayName: userName})
       alert("Check your Emails!");
     } catch (error) {
       console.log(error);
