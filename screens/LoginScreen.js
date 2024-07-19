@@ -18,7 +18,6 @@ const LoginScreen = () => {
     try {
       const response = await signInWithEmailAndPassword(auth, Email, Password);
       console.log(response);
-      await updateProfile(response.user, {displayName: userName})
     } catch (error) {
       console.log(error);
       alert("Login failed: " + error.message);
