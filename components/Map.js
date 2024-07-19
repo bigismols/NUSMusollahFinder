@@ -188,15 +188,15 @@ const Map = () => {
                 <Text>{musollah.name}</Text>
               </View>
               <View>
-                <Text className='w-full h-full'>
-                  <Image 
+                <View>
+                  <Image className='w-full h-full'
                   source={{uri: musollah.image}} 
                   // source={require("../assets/images/Masjid_icon.jpg")}
-                  onError={(e) => console.log(`Image load error: ${e.nativeEvent.error}`)}
-                  style={{height: 150, width:150}}
-                  resizeMode='cover'
+                  // onError={(e) => console.log(`Image load error: ${e.nativeEvent.error}`)}
+                  // style={{height: 150, width:150}}
+                  // resizeMode='cover'
                   />
-                </Text> 
+                </View> 
               </View>
               {/* <TouchableOpacity style={{color: 'blue'}}
                   onPress={() => Linking.openURL(musollah.link)}>
