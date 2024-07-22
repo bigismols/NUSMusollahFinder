@@ -10,8 +10,9 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import LoginScreen from "./LoginScreen";
 import { FIREBASE_AUTH } from "../FirebaseConfig";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ActivityIndicator } from "react-native";
 
 const SignupScreen = () => {
@@ -50,7 +51,7 @@ const SignupScreen = () => {
       />
       <View className="flex space-y-4 mx-4 items-center">
         <View className="w-full mt-80 rounded-2xl items-center bg-gray-200"></View>
-        <View className="w-full rounded-2xl items-center bg-gray-200">
+        <View className="w-full rounded-2xl items-center bg-gray-100 pt-2 pb-2">
           <TextInput
             placeholder="Username"
             placeholderTextColor={"gray"}
@@ -59,7 +60,7 @@ const SignupScreen = () => {
             onChangeText={(text) => setUsername(text)}
           />
         </View>
-        <View className="w-full rounded-2xl items-center bg-gray-200">
+        <View className="w-full rounded-2xl items-center bg-gray-100 pt-2 pb-2">
           <TextInput
             placeholder="Email"
             placeholderTextColor={"gray"}
@@ -68,7 +69,7 @@ const SignupScreen = () => {
             onChangeText={(text) => setEmail(text)}
           />
         </View>
-        <View className="w-full rounded-2xl items-center bg-gray-200">
+        <View className="w-full rounded-2xl items-center bg-gray-100 pt-2 pb-2">
           <TextInput
             placeholder="Password"
             placeholderTextColor={"gray"}

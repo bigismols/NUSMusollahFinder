@@ -10,6 +10,8 @@ import { FIRESTORE_DB } from "../FirebaseConfig";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import MapViewDirections from "react-native-maps-directions";
 import { useNavigation } from "@react-navigation/native";
+import { PROVIDER_GOOGLE } from "react-native-maps";
+
 // hello
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -99,7 +101,7 @@ const Map = () => {
 
   return (
     <MapView
-      provider="google"
+      provider={PROVIDER_GOOGLE}
       style={styles.map}
       initialRegion={{
         latitude: origin.location.latitude,
@@ -146,9 +148,16 @@ const Map = () => {
             latitude: origin.location.latitude,
             longitude: origin.location.longitude,
           }}
+          // centerOffset={{ x: -10, y: -60 }}
           title="Origin"
           identifier="Origin"
-        />
+          image={require('../assets/images/Man.png')}
+        >
+          {/* <Image
+            style={{height: 50, width: 50}}
+            source={require('../assets/images/Man.png')}
+          /> */}
+        </Marker>
       )}
 
       {destination?.location && (
@@ -159,6 +168,7 @@ const Map = () => {
           }}
           title="Destination"
           identifier="Destination"
+          image={require('../assets/images/greenFlag_resized.png')}
         />
       )}
 
@@ -172,28 +182,28 @@ const Map = () => {
           title={musollah.name}
         >
           <Callout
-            style={{ height: 200, width: 200, padding: 15, flex: 1 }}
+            className='p-14 max-w-xs'
             onPress={() => {
               navigation.navigate("MapInfoScreen", { musollah });
-              console.log(musollah.image);
+              // console.log(musollah.image);
             }}
           >
-            <View className="items-center justify-between align-middle">
+            <View className="flex-wrap items-center justify-center p-10">
               <View>
-                <Text>{musollah.name}</Text>
+                <Text className='mb-1'>{musollah.name}</Text>
               </View>
               <View>
-                <Text className="w-full h-full">
-                  <Image
-                    source={{ uri: musollah.image }}
-                    // source={require("../assets/images/Masjid_icon.jpg")}
-                    onError={(e) =>
-                      console.log(`Image load error: ${e.nativeEvent.error}`)
-                    }
-                    style={{ height: 150, width: 150 }}
-                    resizeMode="cover"
-                  />
-                </Text>
+                {/* <Image 
+                  className="w-full h-full"
+                  source={{ uri: musollah.image }}
+                  // source={require("../assets/images/Masjid_icon.jpg")}
+                  onError={(e) =>
+                    console.log(`Image load error: ${e.nativeEvent.error}`)
+                  }
+                  style={{ height: 150, width: 150 }}
+                  resizeMode="cover"
+                /> */}
+                <Text>Click for more info!</Text>
               </View>
               {/* <TouchableOpacity style={{color: 'blue'}}
                   onPress={() => Linking.openURL(musollah.link)}>
