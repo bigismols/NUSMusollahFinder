@@ -1,4 +1,5 @@
 import {
+  Image,
   View,
   TextInput,
   TouchableOpacity,
@@ -9,7 +10,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { FIREBASE_AUTH } from "../FirebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ActivityIndicator } from "react-native";
 
 const LoginScreen = () => {
@@ -41,7 +42,7 @@ const LoginScreen = () => {
         className="w-full h-full absolute"
       />
       <View className="flex space-y-4 mx-4 items-center">
-        <View className="w-full mt-80 rounded-2xl items-center bg-gray-100">
+        <View className="w-full mt-80 rounded-2xl items-center bg-gray-100 pt-2 pb-2">
           <TextInput
             placeholder="Email"
             placeholderTextColor={"gray"}
@@ -50,7 +51,7 @@ const LoginScreen = () => {
             onChangeText={(text) => setEmail(text)}
           />
         </View>
-        <View className="w-full rounded-2xl items-center bg-gray-100">
+        <View className="w-full rounded-2xl items-center bg-gray-100 pt-2 pb-2">
           <TextInput
             placeholder="Password"
             placeholderTextColor={"gray"}
