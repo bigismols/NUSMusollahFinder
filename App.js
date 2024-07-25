@@ -20,6 +20,7 @@ export default function App() {
     onAuthStateChanged(FIREBASE_AUTH, (user) => {
       setUser(user);
     });
+    return () => unsubscribe();
   }, []);
 
   return (
