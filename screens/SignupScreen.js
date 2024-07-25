@@ -16,7 +16,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ActivityIndicator } from "react-native";
 
 const SignupScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation();66
   const [userName, setUsername] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
