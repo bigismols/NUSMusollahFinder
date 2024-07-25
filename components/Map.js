@@ -168,7 +168,6 @@ const Map = () => {
           }}
           title="Destination"
           identifier="Destination"
-          image={require('../assets/images/greenFlag_resized.png')}
         />
       )}
 
