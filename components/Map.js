@@ -101,7 +101,7 @@ const Map = () => {
 
   return (
     <MapView
-      provider={PROVIDER_GOOGLE}
+    provider={PROVIDER_GOOGLE}
       style={styles.map}
       initialRegion={{
         latitude: origin.location.latitude,
