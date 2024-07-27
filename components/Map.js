@@ -76,12 +76,13 @@ const Map = () => {
       if (!origin || !destination) return;
 
       setTimeout(() => {
-        mapRef.current.fitToSuppliedMarkers(["Origin", "Destination"], {
+        timeoutId = mapRef.current.fitToSuppliedMarkers(["Origin", "Destination"], {
           edgePadding: { top: 50, right: 50, left: 50, bottom: 50 },
           animated: true,
         });
       }, 500);
-    }, [destination ]);
+      return () => clearTimeout(timeoutId);
+    }, [destination]);
 
   useEffect(() => {
     const fetchMusollahs = async () => {

@@ -58,6 +58,14 @@ const MapInfo = () => {
           </TouchableOpacity>
           <Text> for video directions!</Text>
         </View>
+        <TouchableOpacity onPress={() => Linking.openURL('https://t.me/+kyf4rhcRKIczMzQ1')} >
+          <View className="flex-row p-9 z-50 bg-green-200 rounded-full absolute bottom-5 right-5">  
+            <Image 
+              source={require("../assets/images/bubble-chat.png")} 
+              className="w-12 h-12 rounded-full"
+            />
+          </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
