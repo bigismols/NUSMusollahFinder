@@ -35,10 +35,10 @@ const Map = () => {
       dispatch(
         setOrigin({
           location: {
-            // latitude: currentLocation.coords.latitude,
-            // longitude: currentLocation.coords.longitude,
-            latitude: 1.2968749382461264,
-            longitude: 103.77642571509065,
+            latitude: currentLocation.coords.latitude,
+            longitude: currentLocation.coords.longitude,
+            // latitude: 1.2968749382461264,
+            // longitude: 103.77642571509065,
           },
         })
       );
@@ -81,7 +81,7 @@ const Map = () => {
           animated: true,
         });
       }, 500);
-    }, [destination]);
+    }, [destination ]);
 
   useEffect(() => {
     const fetchMusollahs = async () => {
